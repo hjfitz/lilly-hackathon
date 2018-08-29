@@ -2,11 +2,26 @@
   "name": "lilly-hackathon",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server",
+    "dev": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "nodemon": "^1.18.3"
+  }
 }
