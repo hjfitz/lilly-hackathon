@@ -7,10 +7,11 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+const publicPath = path.join(__dirname, 'public');
+console.log(publicPath);
+
+app.use('/public', express.static(publicPath));
 app.use(logger('dev'));
-
-// app.use(express.static(path.join(__dirname, 'pubilc')));
-
 
 const server = http.createServer(app);
 
@@ -41,6 +42,7 @@ io.on('connect', (socket) => {
   socket.on('clientInit', s => console.log(s));
 });
 app.get('/server', (_, res) => res.sendFile(path.join(__dirname, 'public/chat-server.html')));
-app.get('/client', (_, res) => res.sendFile(path.join(__dirname, 'public/chat-client.html')));
+app.get('/client-popup', (_, res) => res.sendFile(path.join(__dirname, 'public/Pop-Up/chat-client.html')));
+app.get('/client-messenger', (_, res) => res.sendFile(path.join(__dirname, 'public/Messenger-Page/client-messenger.html')));
 
 server.listen(PORT, () => console.log(`server running on ${PORT}`));
