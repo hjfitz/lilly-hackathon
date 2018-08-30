@@ -23,7 +23,7 @@ $(function () {
             name,
             question,
         }));
-        window.location.replace("/JoNeil/Messenger-Page/client-messenger.html");
+        window.location.replace("/client-messenger");
     });
 });
 

@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+    main {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    main .names {
+      flex-basis: 16.66%;
+      border-right: 1px solid rgba(0,0,0,.05)
+    }
+
+    .conversations {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .conversations .chat {
+      flex-basis: 85%;
+      background-color: #fefefe
+    }
+    .conversations .input {
+      flex-basis: 15%;
+      border-top: 1px solid rgba(0,0,0,.05)
+    }
+    main .names .names__name {
+      padding: 16px 32px;
+      border-bottom: 1px solid rgba(0,0,0,.05);
+      cursor: pointer;
+      transition: 0.8s ease;
+    }
+
+    main .names .names__name:hover {
+      background-color: rgba(0,0,0,.1)
+    }
+
+    main .conversations {
+      flex-basis: 83.33%
+    }
+
+    .message-container > div {
+      float: left;
+      background-color: #0071ce;
+      color: white;
+      padding: 10px 20px;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      border-radius: 4px
+    }
+
+    .helper {
+      float: right!important;
+      color: black!important;
+      background-color: white!important;
+    }
+
+    .message-container {
+      padding: 20px 40px;
+      height: 30px
+    }
+
+  </style>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io(window.location.orgiin);
+    const h = (...args) =>  document.createElement(...args);
+
+
+    window.onload = () => {
+      socket.emit('getQueries');
+      const names = document.querySelector('.names');
+      const chat = document.querySelector('.chat');
+      function populateChat(messages) {
+        chat.innerHTML = '';
+        messages.forEach(exchange => {
+          // console.log(message);
+          const { name, message } = exchange;
+          const box = h('div');
+          const nameContainer = h('div');
+          const messageContainer = h('div');
+          const inner = h('div');
+          box.classList = `message-container`;
+          inner.classList = name;
+          box.appendChild(inner);
+          box.dataset.chat = JSON.stringify(exchange);
+          nameContainer.classList = 'message-container__name';
+          nameContainer.textContent = name;
+          messageContainer.classList = 'message-container__message';
+          messageContainer.textContent = message;
+          inner.appendChild(nameContainer);
+          inner.appendChild(messageContainer);
+          chat.appendChild(box);
+          sessionStorage.setItem('chatPartner', name);
+        });
+      }
+
+      function populatePage(queries) {
+        names.innerHTML = '';
+        Object.keys(queries).forEach(query => {
+          const nameContainer = h('div');
+          const name = h('p');
+          nameContainer.classList = 'names__name';
+          name.textContent = query;
+          nameContainer.appendChild(name);
+          names.appendChild(nameContainer);   
+          nameContainer.addEventListener('click',  () =>  populateChat(queries[query]));          
+        });
+      }
+
+      function sendMessage(event) {
+        if (event.key === 'Enter') {
+          const value = event.target.textContent.trim();
+          const partner = sessionStorage.getItem('chatPartner');
+          socket.emit('message', {name: 'helper', message: value});
+        }
+      }
+
+      socket.on('queries', populatePage);
+      document.querySelector('.input').addEventListener('keyup', sendMessage);
+
+    };
+  </script>
+</head>
+<body>
+  <main>
+    <div class="names">
+
+    </div>
+    <div class="conversations">
+      <div class="chat">
+
+      </div>
+      <div class="input" contenteditable="true">
+
+      </div>
+
+    </div>
+  </main>
+  
+</body>
+</html>
