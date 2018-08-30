@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!--
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io(window.location.origin);
+    </script>
+-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="popup-functions.js"></script>
+    <link href="/JoNeil/styling.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Elanco Chat-Function</title>
+
+</head>
+
+<body>
+
+    <div id="contact-button">Need Help?</div>
+
+    <div id="contact-form">
+
+        <h1>Send us your question</h1>
+        <p>An advisor will be available between 9am to 5pm.</p>
+
+        <form>
+            <input id="name-input"placeholder="Name" type="text" required />
+            <textarea id="question-input" placeholder="Your question"></textarea>
+            <input id="sub-btn" type="button" class="btn" value="SUBMIT" />
+            <input type="reset" id="clear-btn" class="btn" value="CLEAR" />
+        </form>
+    </div>
+
+</body>
+
+</html>
