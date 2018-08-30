@@ -124,9 +124,10 @@ textarea {
     text-align: center;
     cursor: pointer;
 }
+
 #msg-txt-area {
     height: 15vh;
-    width: 100%
-    padding: 0!important;
-    margin: 0!important;
+    width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
 }

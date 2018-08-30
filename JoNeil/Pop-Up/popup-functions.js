@@ -4,14 +4,14 @@ $(function () {
         $('#contact-form').fadeToggle();
     })
     $(document).mousedown(function (e) {
-        var container = $("#contact-form");
-        if (!container.is(e.target) // if the target of the click isn't the container...
-            &&
-            container.has(e.target).length === 0) // ... nor a descendant of the container
-        {
-            if (container.style.display === 'block') {
-                container.fadeOut();
-            }
+        const container = $("#contact-form");
+
+        // if the target of the click isn't the container...
+        if (!container.is(e.target) && // ... nor a descendant of the container
+            container.has(e.target).length === 0) {
+            //if (container && 'style' in container && container.style.display === 'block') { MAKES OTHER FUNCTION NOT WORK
+            container.fadeOut();
+            //}
         }
     });
 
@@ -23,7 +23,7 @@ $(function () {
             name,
             question,
         }));
-        window.location.replace("/JoNeil/Messenger-Page/client-messenger.html");
+        window.location.replace("/lilly-hackathon/JoNeil/Messenger-Page/client-messenger.html");
     });
 });
 
