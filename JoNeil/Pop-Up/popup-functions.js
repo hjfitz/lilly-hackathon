@@ -23,7 +23,7 @@ $(function () {
             name,
             question,
         }));
-        window.location.replace("/lilly-hackathon/JoNeil/Messenger-Page/client-messenger.html");
+        window.location.replace("/public/Messenger-Page/client-messenger.html");
     });
 });
 
