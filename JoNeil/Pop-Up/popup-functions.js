@@ -8,20 +8,9 @@ $(function () {
         }
     })
     $(document).mousedown(function (e) {
-<<<<<<< Updated upstream:JoNeil/Pop-Up/popup-functions.js
-        const container = $("#contact-form");
-
-        // if the target of the click isn't the container...
-        if (!container.is(e.target) && // ... nor a descendant of the container
-            container.has(e.target).length === 0) {
-            //if (container && 'style' in container && container.style.display === 'block') { MAKES OTHER FUNCTION NOT WORK
-            container.fadeOut();
-            //}
-=======
         e.stopPropagation();
         if (!container.is(e.target) && container.has(e.target).length === 0) {
                 container.fadeOut();
->>>>>>> Stashed changes:public/Pop-Up/popup-functions.js
         }
     });
 
