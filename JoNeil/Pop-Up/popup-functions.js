@@ -1,9 +1,14 @@
 $(function () {
+    var button = $("#contact-button");
+    var container = $("#contact-form");
     // contact form animations
-    $('#contact-button').click(function () {
-        $('#contact-form').fadeToggle();
+    button.click(function () {
+        if (container[0].style.display !== 'block') {
+            $('#contact-form').fadeToggle();
+        }
     })
     $(document).mousedown(function (e) {
+<<<<<<< Updated upstream:JoNeil/Pop-Up/popup-functions.js
         const container = $("#contact-form");
 
         // if the target of the click isn't the container...
@@ -12,6 +17,11 @@ $(function () {
             //if (container && 'style' in container && container.style.display === 'block') { MAKES OTHER FUNCTION NOT WORK
             container.fadeOut();
             //}
+=======
+        e.stopPropagation();
+        if (!container.is(e.target) && container.has(e.target).length === 0) {
+                container.fadeOut();
+>>>>>>> Stashed changes:public/Pop-Up/popup-functions.js
         }
     });
 
